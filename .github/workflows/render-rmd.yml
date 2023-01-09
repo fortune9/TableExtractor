@@ -33,6 +33,6 @@ jobs:
           Rscript -e 'for (f in commandArgs(TRUE)) if (file.exists(f)) { outF<-sub("\\.Rmd$","",basename(f)); rmarkdown::render(f, output_file=outF)}' ${RMD_PATH[*]}
           git config --local user.name "$GITHUB_ACTOR"
           git config --local user.email "$GITHUB_ACTOR@users.noreply.github.com"
-          git add ${RMD_PATH[*]/.Rmd/.md} # need added these files first
-          git commit ${RMD_PATH[*]/.Rmd/.md} -m 'Re-build Rmarkdown files' || echo "No changes to commit"
+          git add ${RMD_PATH[*]/.Rmd/.md} docs # need added these files first
+          git commit ${RMD_PATH[*]/.Rmd/.md} docs -m 'Re-build Rmarkdown files' || echo "No changes to commit"
           git push origin || echo "No changes to commit"
